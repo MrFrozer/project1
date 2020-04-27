@@ -142,10 +142,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EngineApi.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineApi.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="String.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
