@@ -4,7 +4,7 @@
 #include <map>
 #include <functional>
 
-class Event : public EngineScript
+class EventListener : public EngineScript
 {
 public:
 	void onInit(void) override;

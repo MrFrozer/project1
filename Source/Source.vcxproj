@@ -145,11 +145,13 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineApi.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

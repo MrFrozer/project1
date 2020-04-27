@@ -36,7 +36,6 @@ public:
 	static void stop(void);
 private:
 	static bool running;
-	static SDL_Window* window;
 };
 
 
@@ -45,8 +44,6 @@ class EngineApplication;
 class EngineScript
 {
 public:
-	EngineScript& getInstance(void);
-
 	virtual void onInit(void) {};
 	virtual void onUpdate(void) {};
 	virtual void onEventUpdate(const SDL_Event& event) {};
@@ -70,7 +67,7 @@ public:
 	/*
 		Info: Return application properties
 	*/
-	EngineApplicationProperties getProperties(void) const;
+	static EngineApplicationProperties& getProperties(void);
 
 	/*
 		Info: Create new script

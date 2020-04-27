@@ -1,10 +1,11 @@
 #include "EngineApi.h"
+
 #include "Event.h"
+#include "Window.h"
 
 #include <iostream>
 
 
-SDL_Window* Engine::window = nullptr;
 bool Engine::running = false;
 
 Engine::Engine(void)
@@ -26,20 +27,11 @@ void Engine::initialize(void)
 		return Debug::log("Unable to initialize SDL2");
 	}
 
-	window = SDL_CreateWindow(EngineApplication::getInstance().getProperties().name.getData(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 768, SDL_WINDOW_SHOWN);
-
-	if (window == nullptr)
-	{
-		running = false;
-		return Debug::log("Unable to create window");
-	}
-
-	running = true;
-
 	/*
 		Info: Create all scripts
 	*/
-	EngineApplication::getInstance().createScript<Event>();
+	EngineApplication::getInstance().createScript<EventListener>();
+	EngineApplication::getInstance().createScript<Window>();
 }
 
 bool Engine::isRunning(void)
@@ -49,10 +41,6 @@ bool Engine::isRunning(void)
 
 void Engine::quit(void)
 {
-	if (window != nullptr)
-	{
-		SDL_DestroyWindow(window);
-	}
 }
 
 void Engine::stop(void)
@@ -65,6 +53,13 @@ void Debug::log(String message)
 	std::cout << message.getData() << std::endl;
 }
 
+
+
+
+
+
+
+
 std::vector<EngineScript*> EngineApplication::scripts;
 SDL_Event EngineApplication::event;
 EngineApplicationProperties EngineApplication::properties;
@@ -76,7 +71,7 @@ void EngineApplication::createScript(TArgs&&... mArgs)
 	scripts.push_back(script);
 }
 
-EngineApplicationProperties EngineApplication::getProperties(void) const
+EngineApplicationProperties& EngineApplication::getProperties(void)
 {
 	return properties;
 }
@@ -131,10 +126,4 @@ void EngineApplication::onUpdate(void)
 {
 	for (auto& i : scripts)
 		i->onUpdate();
-}
-
-EngineScript& EngineScript::getInstance(void)
-{
-	static EngineScript instance;
-	return instance;
 }

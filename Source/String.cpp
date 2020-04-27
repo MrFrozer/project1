@@ -19,3 +19,8 @@ String::String(const char* cstring)
 
 	data[length] = '\0';
 }
+
+char* String::getData(void) const
+{
+	return data;
+}
